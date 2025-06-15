@@ -1,8 +1,7 @@
-FROM python:3.11-slim
+FROM nginx:alpine
 
-WORKDIR /app
-COPY alert_relay.py .
+COPY index.html /usr/share/nginx/html/index.html
 
-RUN pip install Flask requests
+EXPOSE 80
 
-CMD ["python", "alert_relay.py"]
+CMD ["nginx", "-g", "daemon off;"]

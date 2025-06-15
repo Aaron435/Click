@@ -1,17 +1,41 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Aaron435/Click.git'
+                git 'https://github.com/Aaron435/Click'
             }
         }
-        stage('Desplegar') {
+
+        stage('Build Docker Image') {
             steps {
-                bat '''
-                echo "Copiando archivos al servidor..."
-                xcopy /Y "C:\inetpub\wwwroot\Click"  
-                '''
+                script {
+                    docker.build("click:${env.BUILD_ID}")
+                }
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                script {
+                    sh 'docker stop click-staging || true'
+                    sh 'docker rm click-staging || true'
+
+                    sh 'docker run -d -p 8080:80 --name click-staging click:${env.BUILD_ID}'
+                }
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                sh 'curl -I http://localhost:8080 || exit 1'
+            }
+        }
+
+        stage('Notify') {
+            steps {
+                echo "¡Despliegue exitoso! Versión ${env.BUILD_ID} desplegada en staging."
             }
         }
     }
