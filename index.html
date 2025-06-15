@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Click</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background-color: #f0f4f8;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #1f2a40;
+      color: #ffffff;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sidebar button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      padding: 1rem;
+      text-align: left;
+      width: 100%;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .sidebar button:hover {
+      background-color: #3b5772;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #3498db;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .content {
+      padding: 2rem;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <button>Inicio</button>
+    <button>Perfil</button>
+    <button>Configuración</button>
+    <button>Salir</button>
+  </div>
+
+  <div class="main">
+    <header>Click</header>
+    <div class="content">
+      <p>Bienvenido a la interfaz de ejemplo de Click.</p>
+    </div>
+  </div>
+</body>
+</html>

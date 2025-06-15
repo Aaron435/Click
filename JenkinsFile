@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Aaron435/Click.git'
+            }
+        }
+        stage('Desplegar') {
+            steps {
+                bat '''
+                echo "Copiando archivos al servidor..."
+                xcopy /Y "C:\inetpub\wwwroot\Click"  
+                '''
+            }
+        }
+    }
+}
